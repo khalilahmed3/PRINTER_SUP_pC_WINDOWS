@@ -223,10 +223,9 @@ Il problema è stato risolto?
 <!-- === STEP 9 === -->
 <section id="step9" class="step">
 <h2 class="step-title"  data-i18n="step9_title">Ticket Risolto</h2>
-<p  data-i18n="step9_p">
+<p data-i18n="step9_p" data-i18n-type="html">
 Aprire un ticket e chiuderlo:<br>
-<strong>Categoria:</strong><br>
-IN STORE TECH → SW → CIAO Optical → CIAO - Error Brother Printer
+<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
 </p>
 <div class="buttons-center">
  <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
@@ -237,10 +236,9 @@ IN STORE TECH → SW → CIAO Optical → CIAO - Error Brother Printer
 <!-- === STEP 10 === -->
 <section id="step10" class="step">
 <h2 class="step-title" data-i18n="step10_title">LOCAL IT</h2>
-<p data-i18n="step10_p">
+<p data-i18n="step10_p" data-i18n-type="html">
 Aprire un ticket e assegnarlo a <strong>LOCAL IT</strong>:<br>
-<strong>Categoria:</strong><br>
-IN STORE TECH → SW → CIAO Optical → CIAO - Error Brother Printer
+<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
 </p>
 <div class="buttons-center">
  <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
@@ -291,8 +289,8 @@ const translations = {
   step61_p: "Attendere il rilevamento della stampante.",
   step7_p: "Clicca su Disco driver → Sfoglia e seleziona il driver Brother corretto. Imposta come nome: PRTRETE.",
   step8_p: "Non condividere la stampante e impostala come stampante predefinita. Il problema è stato risolto?",
-  step9_p: "Aprire un ticket e chiuderlo:<br><strong>Categoria:</strong><br>RETAIL > B&F - IN STORE TECH > POS HW > CIAO > A4/A5 PRINTER",
-  step10_p: "Aprire un ticket e assegnarlo a <strong>LOCAL IT</strong>:<br><strong>Categoria:</strong><br>RETAIL > B&F - IN STORE TECH > POS HW > CIAO > A4/A5 PRINTER"
+  step9_p: "Aprire un ticket e chiuderlo:<br><strong>Categoria:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER",
+  step10_p: "Aprire un ticket e assegnarlo a <strong>LOCAL IT</strong>:<br><strong>Categoria:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER"
  },
 
  en: {
@@ -330,8 +328,8 @@ const translations = {
   step61_p: "Please wait for the printer to be detected.",
   step7_p: "Click Have Disk → Browse and select the correct Brother driver. Name it: PRTRETE.",
   step8_p: "Do not share the printer and set it as default. Was the issue solved?",
-  step9_p: "Open a ticket and close it:<br><strong>Category:</strong><br>RETAIL > B&F - IN STORE TECH > POS HW > CIAO > A4/A5 PRINTER",
-  step10_p: "Open a ticket and assign it to <strong>LOCAL IT</strong>:<br><strong>Category:</strong><br>RETAIL > B&F - IN STORE TECH > POS HW > CIAO > A4/A5 PRINTER"
+  step9_p: "Open a ticket and close it:<br><strong>Category:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER",
+  step10_p: "Open a ticket and assign it to <strong>LOCAL IT</strong>:<br><strong>Category:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER"
  }
 };
 
@@ -355,7 +353,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const next = target.getAttribute("data-next");
   if(next){
     try{
-      clickTrail.push({ stepId: currentStepId, it: target.innerText, en: target.innerText });
+      const itLabel = getTextFromI18n(target, 'it');
+      const enLabel = getTextFromI18n(target, 'en');
+      clickTrail.push({ stepId: currentStepId, it: itLabel, en: enLabel });
     }catch{}
     goTo(next);
     return;
@@ -396,31 +396,64 @@ function goBack(){
    COPIA AVANZATA (v2B)
 =========================== */
 
-function copyHistory(){
- const prefixIt = 'Il negozio ha segnalato l’impossibilità di stampare da un PC Windows. Di seguito il troubleshooting effettuato :';
- const prefixEn = 'The store reported an issue with printing from a Windows PC. Below is the troubleshooting performed :';
+function copyHistory() {
+  const prefixIt = 'Il negozio ha segnalato l’impossibilità di stampare da un PC Windows. Di seguito il troubleshooting effettuato:';
+  const prefixEn = 'The store reported an issue with printing from a Windows PC. Below is the troubleshooting performed:';
 
- const linesIt = [];
- const linesEn = [];
+  const choiceByStep = {};
+  clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
 
- visited.forEach(step => {
-   const itTitle = translations.it[step+"_title"] ?? step;
-   const enTitle = translations.en[step+"_title"] ?? step;
+  const buildSection = (langCode) => {
+    let sec = '';
+    const allSteps = [...historyStack, currentStepId];
+    const ansLabel  = langCode === 'it' ? '=> Risposta: ' : '=> Answer: ';
+    const stepLabel = langCode === 'it' ? 'Passaggio' : 'Step';
+    const stepCount = allSteps.length;
 
-   const itDesc = translations.it[step+"_p"] ?? "";
-   const enDesc = translations.en[step+"_p"] ?? "";
+    allSteps.forEach((stepId, index) => {
+      const step = document.getElementById(stepId);
+      if (!step) return;
 
-   // Rimuove i tag HTML e sistema gli spazi per una copia pulita
-   linesIt.push(`• ${itTitle}: ${itDesc.replace(/<[^>]+>/g, ' ').replace(/\s\s+/g, ' ').trim()}`);
-   linesEn.push(`• ${enTitle}: ${enDesc.replace(/<[^>]+>/g, ' ').replace(/\s\s+/g, ' ').trim()}`);
- });
+      const titleEl = step.querySelector('h2');
+      const titleText = titleEl ? getTextFromI18n(titleEl, langCode) : stepId;
 
- const finalText =
- `${prefixIt}\n\n${linesIt.join("\n")}\n\n------------------------------\n\n${prefixEn}\n\n${linesEn.join("\n")}`;
+      sec += `[ ${stepLabel} ${index + 1}/${stepCount} — ${titleText} ]\n`;
 
- navigator.clipboard.writeText(finalText)
-   .then(()=> alert(translations[language].copy_success))
-   .catch(()=> alert(translations[language].copy_error));
+      const ch = choiceByStep[stepId];
+      const chosen = ch ? (langCode === 'en' ? ch.en : ch.it) : '';
+
+      let appendedChoice = false;
+      const lines = step.querySelectorAll('p, li');
+      lines.forEach(node => {
+        let line = getTextFromI18n(node, langCode);
+        if (!line) return;
+        if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
+          line = `${line} ${ansLabel}${chosen}`;
+          appendedChoice = true;
+        }
+        sec += `  • ${line}\n`;
+      });
+
+      if (chosen && !appendedChoice) {
+        sec += `  ${ansLabel}${chosen}\n`;
+      }
+
+      sec += `\n`;
+    });
+
+    return sec.trim();
+  };
+
+  const itSection = buildSection('it');
+  const enSection = buildSection('en');
+  const finalOutput =
+    `${prefixIt}\n\n${itSection}\n\n` +
+    `--------------------------------------\n\n` +
+    `${prefixEn}\n\n${enSection}`;
+
+  navigator.clipboard.writeText(finalOutput)
+    .then(() => alert(translations[language].copy_success))
+    .catch(() => alert(translations[language].copy_error));
 }
 
 /* ===========================
