@@ -3,340 +3,503 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title data-i18n="app_title">Installazione Brother – Windows</title>
+<title data-i18n="app_title">Installazione Stampante Brother – Windows</title>
 
-<style> 
- :root { 
- --bg1: rgba(0,255,255,0.15); 
- --bg2: rgba(255,0,255,0.15); 
- --bg3a: #05010d; 
- --bg3b: #0b0120; 
- --panel: rgba(20, 10, 40, 0.9); 
- --text: #fff; 
- --accent1: #ff3c00; 
- --accent2: #ff00ff; 
- --accent3: #00ffff; 
- --btn-bg: linear-gradient(135deg, #ff3c00, #ff00ff); 
- --btn-bg-hover: linear-gradient(135deg, #00ffff, #ff00ff); 
- } 
- * { box-sizing: border-box; } 
- body { 
- font-family: Arial, sans-serif; 
- margin: 0; padding: 0; 
- background: linear-gradient(120deg, var(--bg1), transparent 40%), 
- linear-gradient(240deg, var(--bg2), transparent 40%), 
- linear-gradient(0deg, var(--bg3a), var(--bg3b)); 
- background-size: 200% 200%; 
- animation: cyberMove 10s linear infinite; 
- color: var(--text); 
- } 
- @keyframes cyberMove { 0%{background-position:0% 50%} 100%{background-position:100% 50%} } 
- .brand-left,.brand-right{position:fixed;top:16px;z-index:1000;display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:8px;background:rgba(0,0,0,.12);backdrop-filter:blur(2px)} 
- .brand-left{left:16px} .brand-right{right:16px} 
- .brand-left img{height:38px;width:auto;display:block;filter:drop-shadow(0 0 6px rgba(0,255,255,.5))} 
- .brand-right .brand-text{font-weight:700;letter-spacing:.3px;color:#fff;text-shadow:0 0 6px rgba(0,255,255,.35),0 0 10px rgba(255,0,255,.25);font-size:18px;white-space:nowrap} 
- .page-top-spacer{height:80px;width:100%} 
- #app{max-width:980px;margin:0 auto 32px;padding:24px 24px 40px;background:var(--panel);border-radius:12px;box-shadow:0 0 20px rgba(0,255,255,.4),0 0 40px rgba(255,0,255,.2)} 
- .app-header{display:grid;grid-template-columns:1fr;align-items:center;gap:8px;margin-bottom:12px;position:relative;text-align:center} 
- h1{margin:0;text-align:center;text-shadow:0 0 5px var(--accent3),0 0 10px var(--accent3),0 0 20px var(--accent2);font-size:2rem;line-height:1.2} 
- .step-title{margin-top:10px;margin-bottom:8px;font-size:1.6rem} 
- .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px} 
- .step{display:none;margin:12px 0 28px} 
- .step.is-active{display:block} 
- .buttons-center{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px;width:100%} 
- .btn,.btn-secondary{background:var(--btn-bg);color:#fff;border:none;padding:12px 20px;margin:6px 4px;cursor:pointer;border-radius:8px;font-size:18px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 0 10px rgba(255,60,0,.6),0 0 20px rgba(255,0,255,.4);transition:all .25s ease} 
- .btn:hover,.btn-secondary:hover{transform:translateY(-1px) scale(1.04);box-shadow:0 0 15px rgba(0,255,255,.8),0 0 30px rgba(255,0,255,.6);background:var(--btn-bg-hover)} 
- .btn-secondary{background:linear-gradient(135deg,#7a7a7a,#444);box-shadow:0 0 10px rgba(120,120,120,.4),0 0 20px rgba(80,80,80,.3);text-transform:none;letter-spacing:0} 
- .bottom-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap} 
- .image-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px} 
- .help-image{width:150px;height:110px;object-fit:cover;border-radius:12px;cursor:pointer;transition:.25s;box-shadow:0 0 12px rgba(0,0,0,.4)} 
- .help-image:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(0,255,255,.8)} 
- ol,ul{padding-left:20px} 
- li{color:#ffd3d3; font-size: 1.25rem;}
- p{font-size: 1.25rem;}
- .lang-switcher{position:absolute; top:-8px; right:0; display:flex; gap:6px} 
- .lang-switcher button{padding:6px 10px; font-size:12px; border-radius:6px; text-transform:none} 
- /* FIX: rimuovi il riquadro bianco di focus iniziale */
- #steps:focus { outline: none; }
- /* Modal per immagini ingrandite */
- .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
- .modal img { max-width: 90%; max-height: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
- .modal-close { position: absolute; top: 20px; right: 20px; color: white; font-size: 30px; cursor: pointer; }
- </style> 
+<style>
+  :root {
+    --bg1: rgba(0,255,255,0.15);
+    --bg2: rgba(255,0,255,0.15);
+    --bg3a: #05010d;
+    --bg3b: #0b0120;
+    --panel: rgba(20, 10, 40, 0.92);
+    --text: #fff;
+    --accent1: #ff3c00;
+    --accent2: #ff00ff;
+    --accent3: #00ffff;
+    --btn-bg: linear-gradient(135deg, #ff3c00, #ff00ff);
+    --btn-bg-hover: linear-gradient(135deg, #00ffff, #ff00ff);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background:
+      linear-gradient(120deg, var(--bg1), transparent 40%),
+      linear-gradient(240deg, var(--bg2), transparent 40%),
+      linear-gradient(0deg, var(--bg3a), var(--bg3b));
+    background-size: 200% 200%;
+    animation: cyberMove 10s linear infinite;
+    color: var(--text);
+  }
+  @keyframes cyberMove { 0%{background-position:0% 50%} 100%{background-position:100% 50%} }
+
+  .brand-left, .brand-right {
+    position: fixed; top: 16px; z-index: 1000;
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 8px; border-radius: 8px;
+    background: rgba(0,0,0,.18); backdrop-filter: blur(2px);
+  }
+  .brand-left { left: 16px; }
+  .brand-right { right: 16px; }
+  .brand-left img {
+    height: 38px; width: auto; display: block;
+    filter: drop-shadow(0 0 6px rgba(0,255,255,.5));
+  }
+  .brand-right .brand-text {
+    font-weight: 700; letter-spacing: .3px; color: #fff;
+    text-shadow: 0 0 6px rgba(0,255,255,.35), 0 0 10px rgba(255,0,255,.25);
+    font-size: 18px; white-space: nowrap;
+  }
+  .page-top-spacer { height: 80px; width: 100%; }
+
+  #app {
+    max-width: 980px; margin: 0 auto 32px;
+    padding: 24px 24px 40px;
+    background: var(--panel);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,255,255,.4), 0 0 40px rgba(255,0,255,.2);
+  }
+
+  .app-header {
+    display: grid; grid-template-columns: 1fr;
+    align-items: center; gap: 8px;
+    margin-bottom: 18px;
+    position: relative; text-align: center;
+  }
+  h1 {
+    margin: 0; text-align: center;
+    text-shadow: 0 0 5px var(--accent3), 0 0 10px var(--accent3), 0 0 20px var(--accent2);
+    font-size: 2rem; line-height: 1.2;
+  }
+  .step-title {
+    margin-top: 10px; margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--accent3);
+    text-shadow: 0 0 8px rgba(0,255,255,.5);
+  }
+
+  /* Step counter badge */
+  .step-counter {
+    display: inline-block;
+    background: rgba(0,255,255,.15);
+    border: 1px solid rgba(0,255,255,.3);
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.85rem;
+    color: var(--accent3);
+    margin-bottom: 6px;
+    letter-spacing: .5px;
+  }
+
+  .step { display: none; margin: 12px 0 28px; }
+  .step.is-active { display: block; }
+
+  .buttons-center {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; gap: 10px;
+    margin-top: 18px; width: 100%;
+  }
+  .btn, .btn-secondary {
+    background: var(--btn-bg);
+    color: #fff; border: none;
+    padding: 12px 22px; margin: 6px 4px;
+    cursor: pointer; border-radius: 8px;
+    font-size: 16px; font-weight: bold;
+    letter-spacing: .5px; text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(255,60,0,.6), 0 0 20px rgba(255,0,255,.4);
+    transition: all .25s ease;
+  }
+  .btn:hover, .btn-secondary:hover {
+    transform: translateY(-1px) scale(1.04);
+    box-shadow: 0 0 15px rgba(0,255,255,.8), 0 0 30px rgba(255,0,255,.6);
+    background: var(--btn-bg-hover);
+  }
+  .btn-secondary {
+    background: linear-gradient(135deg, #7a7a7a, #444);
+    box-shadow: 0 0 10px rgba(120,120,120,.4), 0 0 20px rgba(80,80,80,.3);
+    text-transform: none; letter-spacing: 0;
+  }
+
+  .image-links {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .help-image {
+    width: 150px; height: 110px; object-fit: cover;
+    border-radius: 12px; cursor: pointer; transition: .25s;
+    box-shadow: 0 0 12px rgba(0,0,0,.4);
+    border: 1px solid rgba(0,255,255,.2);
+  }
+  .help-image:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(0,255,255,.8);
+  }
+
+  ol, ul { padding-left: 22px; }
+  li { color: #ffd3d3; font-size: 1.15rem; margin-bottom: 4px; }
+  p { font-size: 1.15rem; line-height: 1.65; }
+
+  .lang-switcher {
+    position: absolute; top: -8px; right: 0;
+    display: flex; gap: 6px;
+  }
+  .lang-switcher button {
+    padding: 6px 12px; font-size: 12px;
+    border-radius: 6px; text-transform: none;
+  }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    width: 100%; height: 6px;
+    background: rgba(255,255,255,.1);
+    border-radius: 4px; margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent3), var(--accent2));
+    border-radius: 4px;
+    transition: width .4s ease;
+  }
+
+  /* Ticket info box */
+  .ticket-box {
+    background: rgba(0,255,255,.07);
+    border: 1px solid rgba(0,255,255,.25);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 12px;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .ticket-box strong { color: var(--accent3); }
+
+  /* Modal */
+  .modal {
+    display: none; position: fixed; z-index: 2000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,.85);
+  }
+  .modal img {
+    max-width: 90%; max-height: 90%;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,255,255,.5);
+  }
+  .modal-close {
+    position: absolute; top: 20px; right: 28px;
+    color: white; font-size: 36px; cursor: pointer;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--accent3); }
+
+  #steps:focus { outline: none; }
+</style>
 </head>
 
 <body>
 
 <!-- BRAND -->
 <div class="brand-left"><img src="images/dxc.png" alt="DXC"></div>
-<div class="brand-right"><strong>EssilorLuxottica</strong></div>
+<div class="brand-right"><strong class="brand-text">EssilorLuxottica</strong></div>
 <div class="page-top-spacer"></div>
 
-<!-- Modal per immagini ingrandite -->
+<!-- Modal immagini ingrandite -->
 <div id="imageModal" class="modal" onclick="closeModal()">
   <span class="modal-close" aria-label="Chiudi">&times;</span>
-  <img id="modalImage" src="" alt="">
+  <img id="modalImage" src="" alt="Anteprima screenshot">
 </div>
 
 <div id="app">
 
- <header class="app-header">
-      <h1 data-i18n="app_title">Installazione Brother – Windows</h1>
-      <!-- Switcher lingua disponibile da qualsiasi step -->
-      <div class="lang-switcher" aria-label="Language switcher">
-        <button type="button" class="btn-secondary" onclick="setLanguage('it')" data-i18n="btn_lang_it">Italiano 🇮🇹</button>
-        <button type="button" class="btn-secondary" onclick="setLanguage('en')" data-i18n="btn_lang_en">English 🇬🇧</button>
+  <header class="app-header">
+    <h1 data-i18n="app_title">Installazione Stampante Brother – Windows</h1>
+    <div class="lang-switcher" aria-label="Selettore lingua">
+      <button type="button" class="btn-secondary" onclick="setLanguage('it')" data-i18n="btn_lang_it">Italiano 🇮🇹</button>
+      <button type="button" class="btn-secondary" onclick="setLanguage('en')" data-i18n="btn_lang_en">English 🇬🇧</button>
+    </div>
+  </header>
+
+  <!-- Progress bar -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:10%"></div>
+  </div>
+
+  <main id="steps">
+
+    <!-- STEP 1 -->
+    <section id="step1" class="step is-active">
+      <span class="step-counter" data-i18n="step_counter_1">Passaggio 1 di 9</span>
+      <h2 class="step-title" data-i18n="step1_title">Apri il Pannello di Controllo</h2>
+      <p data-i18n="step1_p">Dal PC Windows, apri il <strong>Pannello di Controllo</strong>.</p>
+      <div class="image-links">
+        <img src="images/Apri il Pannello di Controllo.png" class="help-image"
+             alt="Apertura Pannello di Controllo" onclick="openModal(this.src)"/>
       </div>
-    </header>
+      <div class="buttons-center">
+        <button class="btn" data-next="step2" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
 
-<main id="steps">
+    <!-- STEP 2 -->
+    <section id="step2" class="step">
+      <span class="step-counter" data-i18n="step_counter_2">Passaggio 2 di 9</span>
+      <h2 class="step-title" data-i18n="step2_title">Visualizzazione a Icone Piccole</h2>
+      <p data-i18n="step2_p">Nel Pannello di Controllo, imposta la visualizzazione su <strong>Icone piccole</strong>, quindi clicca su <strong>Dispositivi e Stampanti</strong>.</p>
+      <div class="image-links">
+        <img src="images/Icone Piccole.png" class="help-image"
+             alt="Icone piccole nel Pannello di Controllo" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step3" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
 
-<!-- === STEP 1 === -->
-<section id="step1" class="step is-active">
-<h2 class="step-title" data-i18n="step1_title">Apri il Pannello di Controllo</h2>
-<p data-i18n="step1_p"> Dal PC Windows apri il <strong>Pannello di Controllo</strong>.</p>
-<div class="buttons-center">
- <button class="btn" data-i18n="btn_next" data-next="step2">AVANTI</button>
+    <!-- STEP 3 -->
+    <section id="step3" class="step">
+      <span class="step-counter" data-i18n="step_counter_3">Passaggio 3 di 9</span>
+      <h2 class="step-title" data-i18n="step3_title">Stampanti e Scanner</h2>
+      <p data-i18n="step3_p">Nella finestra che si apre, seleziona <strong>Stampanti e scanner</strong>.</p>
+      <div class="image-links">
+        <img src="images/stampanti e scaner.png" class="help-image"
+             alt="Selezione Stampanti e Scanner" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step4" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section id="step4" class="step">
+      <span class="step-counter" data-i18n="step_counter_4">Passaggio 4 di 9</span>
+      <h2 class="step-title" data-i18n="step4_title">Aggiunta Manuale della Stampante</h2>
+      <p data-i18n="step4_p">Clicca su <strong>Aggiungi dispositivo</strong>, poi seleziona <strong>Aggiungi una stampante o uno scanner</strong>. Nella schermata successiva, scegli <strong>La stampante desiderata non è nell'elenco</strong>.</p>
+      <div class="image-links">
+        <img src="images/Aggiungi manualmente 1.png" class="help-image"
+             alt="Aggiungi dispositivo - schermata 1" onclick="openModal(this.src)"/>
+        <img src="images/Aggiungi manualmente 2.png" class="help-image"
+             alt="Aggiungi dispositivo - schermata 2" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step5" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section id="step5" class="step">
+      <span class="step-counter" data-i18n="step_counter_5">Passaggio 5 di 9</span>
+      <h2 class="step-title" data-i18n="step5_title">Creazione Porta TCP/IP</h2>
+      <p data-i18n="step5_p">Seleziona <strong>Aggiungi una stampante locale o di rete con impostazioni manuali</strong>, poi scegli <strong>Crea una nuova porta</strong> e imposta il tipo su <strong>Standard TCP/IP</strong>.</p>
+      <div class="image-links">
+        <img src="images/Crea nuova porta TCP.IP.png" class="help-image"
+             alt="Creazione porta TCP/IP" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step6" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 6 -->
+    <section id="step6" class="step">
+      <span class="step-counter" data-i18n="step_counter_6">Passaggio 6 di 9</span>
+      <h2 class="step-title" data-i18n="step6_title">Inserimento Indirizzo IP</h2>
+      <p data-i18n="step6_p">Inserisci l'<strong>indirizzo IP</strong> della stampante nel campo apposito. L'indirizzo IP è reperibile dal sistema gestionale o richiedendolo al tuo Server di riferimento.</p>
+      <div class="image-links">
+        <img src="images/Inserisci IP stampante.png" class="help-image"
+             alt="Inserimento IP stampante" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step61" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 6.1 -->
+    <section id="step61" class="step">
+      <span class="step-counter" data-i18n="step_counter_61">Passaggio 7 di 9</span>
+      <h2 class="step-title" data-i18n="step61_title">Rilevamento in Corso</h2>
+      <p data-i18n="step61_p">Attendere il completamento del <strong>rilevamento automatico</strong> della stampante. L'operazione richiede alcuni secondi.</p>
+      <div class="image-links">
+        <img src="images/RILEVAMENTO.png" class="help-image"
+             alt="Rilevamento stampante in corso" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step7" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 7 -->
+    <section id="step7" class="step">
+      <span class="step-counter" data-i18n="step_counter_7">Passaggio 8 di 9</span>
+      <h2 class="step-title" data-i18n="step7_title">Selezione del Driver</h2>
+      <p data-i18n="step7_p">Clicca su <strong>Disco driver</strong>, poi su <strong>Sfoglia</strong> e seleziona il driver Brother corretto dalla cartella appropriata. Come nome della stampante imposta: <strong>PRTRETE</strong>.</p>
+      <div class="image-links">
+        <img src="images/Seleziona Driver.png" class="help-image"
+             alt="Selezione driver Brother - schermata 1" onclick="openModal(this.src)"/>
+        <img src="images/Seleziona Driver 2.png" class="help-image"
+             alt="Selezione driver Brother - schermata 2" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step8" data-i18n="btn_next">AVANTI</button>
+      </div>
+    </section>
+
+    <!-- STEP 8 -->
+    <section id="step8" class="step">
+      <span class="step-counter" data-i18n="step_counter_8">Passaggio 9 di 9</span>
+      <h2 class="step-title" data-i18n="step8_title">Impostazioni Finali</h2>
+      <p data-i18n="step8_p"><strong>Non condividere</strong> la stampante in rete e impostala come <strong>stampante predefinita</strong>. Esegui una stampa di prova per verificare il corretto funzionamento.<br><br>Il problema è stato risolto?</p>
+      <div class="image-links">
+        <img src="images/Impostazioni finali.png" class="help-image"
+             alt="Impostazioni finali stampante" onclick="openModal(this.src)"/>
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-next="step9" data-i18n="yes">SÌ</button>
+        <button class="btn" data-next="step10" data-i18n="no">NO</button>
+      </div>
+    </section>
+
+    <!-- STEP 9 – Risolto -->
+    <section id="step9" class="step">
+      <h2 class="step-title" data-i18n="step9_title">✅ Problema Risolto</h2>
+      <p data-i18n="step9_p">La stampante è stata installata correttamente. Apri un ticket e <strong>chiudilo</strong> con la seguente categoria:</p>
+      <div class="ticket-box" data-i18n="step9_ticket" data-i18n-type="html">
+        <strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-copy data-i18n="btn_copy">📋 Copia cronologia</button>
+      </div>
+    </section>
+
+    <!-- STEP 10 – Local IT -->
+    <section id="step10" class="step">
+      <h2 class="step-title" data-i18n="step10_title">⚠️ Escalation a LOCAL IT</h2>
+      <p data-i18n="step10_p">Il problema non è stato risolto. Apri un ticket e <strong>assegnalo a LOCAL IT</strong> con la seguente categoria:</p>
+      <div class="ticket-box" data-i18n="step10_ticket" data-i18n-type="html">
+        <strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
+      </div>
+      <div class="buttons-center">
+        <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
+        <button class="btn" data-copy data-i18n="btn_copy">📋 Copia cronologia</button>
+      </div>
+    </section>
+
+  </main>
 </div>
-<div class="image-links">
-  <img src="images/Apri il Pannello di Controllo.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
 
-<!-- === STEP 2 === -->
-<section id="step2" class="step">
-<h2 class="step-title" data-i18n="step2_title">Icone Piccole</h2>
-<p data-i18n="step2_p">Nel Pannello di Controllo imposta la visualizzazione su <strong>Icone piccole</strong> e clicca su <strong>Dispositivi e Stampanti</strong>.</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step3" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/Icone Piccole.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 3 === -->
-<section id="step3" class="step">
-<h2 class="step-title" data-i18n="step3_title">Stampanti e scanner</h2>
-<p data-i18n="step3_p">Seleziona <strong>Stampanti e scanner</strong>.</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step4" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/stampanti e scaner.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 4 === -->
-<section id="step4" class="step">
-<h2 class="step-title" data-i18n="step4_title">Aggiungi manualmente</h2>
-<p data-i18n="step4_p">Clicca su <strong>Aggiungi dispositivo</strong>, poi su <strong>Aggiungi una stampante o uno scanner</strong> e infine seleziona <strong>La stampante desiderata non è nell’elenco</strong>.</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step5" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/Aggiungi manualmente 1.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-  <img src="images/Aggiungi manualmente 2.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 5 === -->
-<section id="step5" class="step">
-<h2 class="step-title" data-i18n="step5_title">Crea nuova porta TCP/IP</h2>
-<p data-i18n="step5_p">
-Seleziona:<br>
-<strong>Aggiungi una stampante locale o di rete con impostazioni manuali</strong><br>
-e poi:<br>
-<strong>Crea una nuova porta → Standard TCP/IP</strong>.
-</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step6" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/Crea nuova porta TCP.IP.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 6 === -->
-<section id="step6" class="step">
-<h2 class="step-title" data-i18n="step6_title">Inserisci IP stampante</h2>
-<p data-i18n="step6_p">Inserisci l’<strong>indirizzo IP</strong> della stampante (recuperabile dal sistema o dal tuo Server).</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step61" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/Inserisci IP stampante.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 61 === -->
-<section id="step61" class="step">
-<h2 class="step-title" data-i18n="step61_title">RILEVAMENTO</h2>
-<p data-i18n="step61_p">Attendere il rilevamento della stampante.</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step7" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/RILEVAMENTO.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 7 === -->
-<section id="step7" class="step">
-<h2 class="step-title" data-i18n="step7_title">Seleziona Driver</h2>
-<p data-i18n="step7_p">Clicca su <strong>Disco driver</strong> → <strong>Sfoglia</strong> e seleziona il driver Brother corretto.<br>
-Imposta come nome stampante: <strong>PRTRETE</strong>.
-</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-next="step8" data-i18n="btn_next">AVANTI</button>
-</div>
-<div class="image-links">
-  <img src="images/Seleziona Driver.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-  <img src="images/Seleziona Driver 2.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 8 === -->
-<section id="step8" class="step">
-<h2 class="step-title" data-i18n="step8_title">Impostazioni finali</h2>
-<p data-i18n="step8_p">
-Non condividere la stampante e impostala come <strong>stampante predefinita</strong>.<br><br>
-Il problema è stato risolto?
-</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-i18n="yes" data-next="step9">SÌ</button>
- <button class="btn" data-i18n="no" data-next="step10">NO</button>
-</div>
-<div class="image-links">
-  <img src="images/Impostazioni finali.png" class="help-image" alt="Errore stampante schermata 1" data-i18n="alt_err1" data-i18n-attr="alt" onclick="openModal(this.src)"/>
-        </div>
-</section>
-
-<!-- === STEP 9 === -->
-<section id="step9" class="step">
-<h2 class="step-title"  data-i18n="step9_title">Ticket Risolto</h2>
-<p data-i18n="step9_p" data-i18n-type="html">
-Aprire un ticket e chiuderlo:<br>
-<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
-</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
-</div>
-</section>
-
-<!-- === STEP 10 === -->
-<section id="step10" class="step">
-<h2 class="step-title" data-i18n="step10_title">LOCAL IT</h2>
-<p data-i18n="step10_p" data-i18n-type="html">
-Aprire un ticket e assegnarlo a <strong>LOCAL IT</strong>:<br>
-<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER
-</p>
-<div class="buttons-center">
- <button class="btn-secondary" data-back data-i18n="btn_back">⬅ Indietro</button>
- <button class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
-</div>
-</section>
-
-</main>
-</div> <!-- END APP -->
 <script>
-/* ===========================
-   I18N – TRADUZIONI IT / EN
-=========================== */
-
+/* === TRADUZIONI IT / EN === */
 const translations = {
- it: {
-  app_title: "Installazione Brother – Windows",
-  btn_next: "AVANTI",
-  btn_back: "⬅ Indietro",
-  btn_copy: "Copia cronologia",
-  yes: "SÌ",
-  no: "NO",
-  copy_success: "Troubleshooting copiato negli appunti!",
-  copy_error: "Errore durante la copia negli appunti.",
-  btn_lang_it: "Italiano 🇮🇹",
-  btn_lang_en: "English 🇬🇧",
+  it: {
+    app_title: "Installazione Stampante Brother – Windows",
+    btn_next: "AVANTI",
+    btn_back: "⬅ Indietro",
+    btn_copy: "📋 Copia cronologia",
+    yes: "SÌ ✔",
+    no: "NO ✖",
+    copy_success: "Cronologia copiata negli appunti!",
+    copy_error: "Errore durante la copia negli appunti.",
+    btn_lang_it: "Italiano 🇮🇹",
+    btn_lang_en: "English 🇬🇧",
 
-  /* STEP TITLES */
-  step1_title: "Apri il Pannello di Controllo",
-  step2_title: "Icone Piccole",
-  step3_title: "Stampanti e scanner",
-  step4_title: "Aggiungi manualmente",
-  step5_title: "Crea nuova porta TCP/IP",
-  step6_title: "Inserisci IP stampante",
-  step61_title: "RILEVAMENTO",
-  step7_title: "Seleziona Driver",
-  step8_title: "Impostazioni finali",
-  step9_title: "Ticket Risolto",
-  step10_title:"LOCAL IT",
+    step_counter_1: "Passaggio 1 di 9",
+    step_counter_2: "Passaggio 2 di 9",
+    step_counter_3: "Passaggio 3 di 9",
+    step_counter_4: "Passaggio 4 di 9",
+    step_counter_5: "Passaggio 5 di 9",
+    step_counter_6: "Passaggio 6 di 9",
+    step_counter_61: "Passaggio 7 di 9",
+    step_counter_7: "Passaggio 8 di 9",
+    step_counter_8: "Passaggio 9 di 9",
 
-  /* STEP TEXTS */
-  step1_p: "Dal PC Windows apri il Pannello di Controllo.",
-  step2_p: "Nel Pannello di Controllo imposta la visualizzazione su Icone piccole e clicca su Dispositivi e Stampanti.",
-  step3_p: "Seleziona Stampanti e scanner.",
-  step4_p: "Clicca su Aggiungi dispositivo, poi su Aggiungi una stampante o uno scanner e infine seleziona La stampante desiderata non è nell’elenco.",
-  step5_p: "Seleziona: Aggiungi una stampante locale o di rete con impostazioni manuali → Crea una nuova porta → Standard TCP/IP.",
-  step6_p: "Inserisci l’indirizzo IP della stampante.",
-  step61_p: "Attendere il rilevamento della stampante.",
-  step7_p: "Clicca su Disco driver → Sfoglia e seleziona il driver Brother corretto. Imposta come nome: PRTRETE.",
-  step8_p: "Non condividere la stampante e impostala come stampante predefinita. Il problema è stato risolto?",
-  step9_p: "Aprire un ticket e chiuderlo:<br><strong>Categoria:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER",
-  step10_p: "Aprire un ticket e assegnarlo a <strong>LOCAL IT</strong>:<br><strong>Categoria:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER"
- },
+    step1_title: "Apri il Pannello di Controllo",
+    step2_title: "Visualizzazione a Icone Piccole",
+    step3_title: "Stampanti e Scanner",
+    step4_title: "Aggiunta Manuale della Stampante",
+    step5_title: "Creazione Porta TCP/IP",
+    step6_title: "Inserimento Indirizzo IP",
+    step61_title: "Rilevamento in Corso",
+    step7_title: "Selezione del Driver",
+    step8_title: "Impostazioni Finali",
+    step9_title: "✅ Problema Risolto",
+    step10_title: "⚠️ Escalation a LOCAL IT",
 
- en: {
-  app_title: "Brother Printer Installation – Windows",
-  btn_next: "NEXT",
-  btn_back: "⬅ Back",
-  btn_copy: "Copy troubleshooting",
-  yes: "YES",
-  no: "NO",
-  copy_success: "Troubleshooting copied to clipboard!",
-  copy_error: "Unable to copy to clipboard.",
-  btn_lang_it: "Italiano 🇮🇹",
-  btn_lang_en: "English 🇬🇧",
+    step1_p: "Dal PC Windows, apri il Pannello di Controllo.",
+    step2_p: "Nel Pannello di Controllo, imposta la visualizzazione su Icone piccole, quindi clicca su Dispositivi e Stampanti.",
+    step3_p: "Nella finestra che si apre, seleziona Stampanti e scanner.",
+    step4_p: "Clicca su Aggiungi dispositivo, poi seleziona Aggiungi una stampante o uno scanner. Nella schermata successiva, scegli La stampante desiderata non è nell'elenco.",
+    step5_p: "Seleziona Aggiungi una stampante locale o di rete con impostazioni manuali, poi scegli Crea una nuova porta e imposta il tipo su Standard TCP/IP.",
+    step6_p: "Inserisci l'indirizzo IP della stampante nel campo apposito. L'indirizzo IP è reperibile dal sistema gestionale o richiedendolo al Server di riferimento.",
+    step61_p: "Attendere il completamento del rilevamento automatico della stampante. L'operazione richiede alcuni secondi.",
+    step7_p: "Clicca su Disco driver, poi su Sfoglia e seleziona il driver Brother corretto. Come nome della stampante imposta: PRTRETE.",
+    step8_p: "Non condividere la stampante in rete e impostala come stampante predefinita. Esegui una stampa di prova. Il problema è stato risolto?",
+    step9_p: "La stampante è stata installata correttamente. Apri un ticket e chiudilo con la seguente categoria:",
+    step9_ticket: "<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER",
+    step10_p: "Il problema non è stato risolto. Apri un ticket e assegnalo a LOCAL IT con la seguente categoria:",
+    step10_ticket: "<strong>Categoria:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER"
+  },
 
-  /* STEP TITLES */
-  step1_title: "Open Control Panel",
-  step2_title: "Small Icons",
-  step3_title: "Printers & scanners",
-  step4_title: "Manual installation",
-  step5_title: "Create TCP/IP port",
-  step6_title: "Insert printer IP",
-  step61_title: "Detection",
-  step7_title: "Select driver",
-  step8_title: "Final settings",
-  step9_title: "Ticket Closed",
-  step10_title:"LOCAL IT",
+  en: {
+    app_title: "Brother Printer Installation – Windows",
+    btn_next: "NEXT",
+    btn_back: "⬅ Back",
+    btn_copy: "📋 Copy troubleshooting",
+    yes: "YES ✔",
+    no: "NO ✖",
+    copy_success: "Troubleshooting history copied to clipboard!",
+    copy_error: "Unable to copy to clipboard.",
+    btn_lang_it: "Italiano 🇮🇹",
+    btn_lang_en: "English 🇬🇧",
 
-  /* STEP TEXTS */
-  step1_p: "From Windows, open the Control Panel.",
-  step2_p: "Set Small Icons view and click Devices and Printers.",
-  step3_p: "Select Printers & scanners.",
-  step4_p: "Click Add device, then Add a printer or scanner, and finally select The printer that I want isn’t listed.",
-  step5_p: "Select: Add a local or network printer → Create new port → Standard TCP/IP.",
-  step6_p: "Insert the printer IP address.",
-  step61_p: "Please wait for the printer to be detected.",
-  step7_p: "Click Have Disk → Browse and select the correct Brother driver. Name it: PRTRETE.",
-  step8_p: "Do not share the printer and set it as default. Was the issue solved?",
-  step9_p: "Open a ticket and close it:<br><strong>Category:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER",
-  step10_p: "Open a ticket and assign it to <strong>LOCAL IT</strong>:<br><strong>Category:</strong> RETAIL > B&F - IN STORE TECH > CIAO HW > HW > A4/A5 PRINTER - BROTHER PRINTER"
- }
+    step_counter_1: "Step 1 of 9",
+    step_counter_2: "Step 2 of 9",
+    step_counter_3: "Step 3 of 9",
+    step_counter_4: "Step 4 of 9",
+    step_counter_5: "Step 5 of 9",
+    step_counter_6: "Step 6 of 9",
+    step_counter_61: "Step 7 of 9",
+    step_counter_7: "Step 8 of 9",
+    step_counter_8: "Step 9 of 9",
+
+    step1_title: "Open Control Panel",
+    step2_title: "Small Icons View",
+    step3_title: "Printers & Scanners",
+    step4_title: "Manual Printer Installation",
+    step5_title: "Create TCP/IP Port",
+    step6_title: "Enter Printer IP Address",
+    step61_title: "Detection in Progress",
+    step7_title: "Select Driver",
+    step8_title: "Final Settings",
+    step9_title: "✅ Issue Resolved",
+    step10_title: "⚠️ Escalate to LOCAL IT",
+
+    step1_p: "From your Windows PC, open the Control Panel.",
+    step2_p: "In Control Panel, set the view to Small Icons, then click on Devices and Printers.",
+    step3_p: "In the window that opens, select Printers & scanners.",
+    step4_p: "Click Add device, then select Add a printer or scanner. On the next screen, choose The printer that I want isn't listed.",
+    step5_p: "Select Add a local or network printer with manual settings, then choose Create a new port and set the type to Standard TCP/IP.",
+    step6_p: "Enter the printer's IP address in the field provided. The IP address can be found in the management system or by requesting it from your reference Server.",
+    step61_p: "Wait for the automatic printer detection to complete. This operation takes a few seconds.",
+    step7_p: "Click Have Disk, then Browse and select the correct Brother driver. Set the printer name to: PRTRETE.",
+    step8_p: "Do not share the printer on the network and set it as the default printer. Print a test page to verify correct operation. Was the issue resolved?",
+    step9_p: "The printer has been successfully installed. Open a ticket and close it with the following category:",
+    step9_ticket: "<strong>Category:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER",
+    step10_p: "The issue was not resolved. Open a ticket and assign it to LOCAL IT with the following category:",
+    step10_ticket: "<strong>Category:</strong> RETAIL &gt; B&amp;F - IN STORE TECH &gt; CIAO HW &gt; HW &gt; A4/A5 PRINTER - BROTHER PRINTER"
+  }
 };
 
-/* ===========================
-   NAVIGAZIONE
-=========================== */
-
+/* === NAVIGAZIONE === */
+const TOTAL_STEPS = 9;
+const stepOrder = ["step1","step2","step3","step4","step5","step6","step61","step7","step8"];
 const historyStack = [];
 let currentStepId = "step1";
 const visited = new Set();
@@ -344,87 +507,98 @@ let language = "it";
 const clickTrail = [];
 
 document.addEventListener("DOMContentLoaded", () => {
- showStep(currentStepId);
+  showStep(currentStepId);
 
- document.addEventListener("click", (e)=>{
-  const target = e.target.closest("button");
-  if(!target) return;
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("button");
+    if (!target) return;
 
-  const next = target.getAttribute("data-next");
-  if(next){
-    try{
-      const itLabel = getTextFromI18n(target, 'it');
-      const enLabel = getTextFromI18n(target, 'en');
-      clickTrail.push({ stepId: currentStepId, it: itLabel, en: enLabel });
-    }catch{}
-    goTo(next);
-    return;
-  }
-
-  if(target.hasAttribute("data-back")){
-    goBack(); return;
-  }
-
-  if(target.hasAttribute("data-copy")){
-    copyHistory(); return;
-  }
- });
+    const next = target.getAttribute("data-next");
+    if (next) {
+      try {
+        const itLabel = getTextFromI18n(target, 'it');
+        const enLabel = getTextFromI18n(target, 'en');
+        clickTrail.push({ stepId: currentStepId, it: itLabel, en: enLabel });
+      } catch {}
+      goTo(next);
+      return;
+    }
+    if (target.hasAttribute("data-back")) { goBack(); return; }
+    if (target.hasAttribute("data-copy")) { copyHistory(); return; }
+  });
 });
 
-
-
-function showStep(id){
- document.querySelectorAll(".step").forEach(s => s.classList.remove("is-active"));
- document.getElementById(id).classList.add("is-active");
- visited.add(id);
- currentStepId = id;
+function updateProgressBar(stepId) {
+  const idx = stepOrder.indexOf(stepId);
+  let pct = idx >= 0 ? Math.round(((idx + 1) / TOTAL_STEPS) * 100) : 100;
+  document.getElementById("progressBar").style.width = pct + "%";
 }
 
-function goTo(id){
- historyStack.push(currentStepId);
- showStep(id);
+function showStep(id) {
+  document.querySelectorAll(".step").forEach(s => s.classList.remove("is-active"));
+  document.getElementById(id).classList.add("is-active");
+  visited.add(id);
+  currentStepId = id;
+  updateProgressBar(id);
 }
 
-function goBack(){
- if(historyStack.length === 0) return;
- visited.delete(currentStepId);
- clickTrail.pop();
- showStep(historyStack.pop());
+function goTo(id) {
+  historyStack.push(currentStepId);
+  showStep(id);
 }
 
-/* ===========================
-   COPIA AVANZATA (v2B)
-=========================== */
+function goBack() {
+  if (historyStack.length === 0) return;
+  visited.delete(currentStepId);
+  clickTrail.pop();
+  showStep(historyStack.pop());
+}
 
+/* === HELPERS COPIA === */
+function stripHTML(html) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  return (tmp.textContent || tmp.innerText || "").trim();
+}
+function looksLikeHtml(str) {
+  return /<[^>]+>/.test(String(str || "")) || /&[a-zA-Z#0-9]+;/.test(String(str || ""));
+}
+function getTextFromI18n(el, langCode) {
+  const key = el.getAttribute("data-i18n");
+  const type = el.getAttribute("data-i18n-type");
+  if (key) {
+    let val = (translations[langCode] && translations[langCode][key]) || (translations.it && translations.it[key]) || "";
+    if (!val) return (el.innerText || "").trim();
+    if (type === "html" || looksLikeHtml(val)) return stripHTML(val);
+    return String(val).trim();
+  }
+  return (el.innerText || "").trim();
+}
+
+/* === COPIA CRONOLOGIA === */
 function copyHistory() {
-  const prefixIt = 'Il negozio ha segnalato l’impossibilità di stampare da un PC Windows. Di seguito il troubleshooting effettuato:';
-  const prefixEn = 'The store reported an issue with printing from a Windows PC. Below is the troubleshooting performed:';
-
+  const prefixIt = "Il negozio ha segnalato l'impossibilità di stampare da un PC Windows. Di seguito il troubleshooting effettuato:";
+  const prefixEn = "The store reported an issue with printing from a Windows PC. Below is the troubleshooting performed:";
   const choiceByStep = {};
   clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
 
   const buildSection = (langCode) => {
     let sec = '';
     const allSteps = [...historyStack, currentStepId];
-    const ansLabel  = langCode === 'it' ? '=> Risposta: ' : '=> Answer: ';
+    const ansLabel = langCode === 'it' ? '=> Risposta: ' : '=> Answer: ';
     const stepLabel = langCode === 'it' ? 'Passaggio' : 'Step';
     const stepCount = allSteps.length;
 
     allSteps.forEach((stepId, index) => {
       const step = document.getElementById(stepId);
       if (!step) return;
-
       const titleEl = step.querySelector('h2');
       const titleText = titleEl ? getTextFromI18n(titleEl, langCode) : stepId;
-
       sec += `[ ${stepLabel} ${index + 1}/${stepCount} — ${titleText} ]\n`;
-
       const ch = choiceByStep[stepId];
       const chosen = ch ? (langCode === 'en' ? ch.en : ch.it) : '';
-
       let appendedChoice = false;
-      const lines = step.querySelectorAll('p, li');
-      lines.forEach(node => {
+      step.querySelectorAll('p, li').forEach(node => {
         let line = getTextFromI18n(node, langCode);
         if (!line) return;
         if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
@@ -433,14 +607,9 @@ function copyHistory() {
         }
         sec += `  • ${line}\n`;
       });
-
-      if (chosen && !appendedChoice) {
-        sec += `  ${ansLabel}${chosen}\n`;
-      }
-
-      sec += `\n`;
+      if (chosen && !appendedChoice) sec += `  ${ansLabel}${chosen}\n`;
+      sec += '\n';
     });
-
     return sec.trim();
   };
 
@@ -451,57 +620,63 @@ function copyHistory() {
     `--------------------------------------\n\n` +
     `${prefixEn}\n\n${enSection}`;
 
-  navigator.clipboard.writeText(finalOutput)
-    .then(() => alert(translations[language].copy_success))
-    .catch(() => alert(translations[language].copy_error));
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(finalOutput)
+      .then(() => alert(translations[language].copy_success))
+      .catch(() => fallbackCopy(finalOutput));
+  } else {
+    fallbackCopy(finalOutput);
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      alert(translations[language].copy_success);
+    } catch {
+      alert(translations[language].copy_error);
+    }
+    document.body.removeChild(ta);
+  }
 }
 
-/* ===========================
-   CAMBIO LINGUA
-=========================== */
-
-function setLanguage(lang){
- language = lang;
- applyTranslations();
+/* === CAMBIO LINGUA === */
+function setLanguage(lang) {
+  language = lang;
+  applyTranslations();
 }
 
 function applyTranslations() {
   document.querySelector("title[data-i18n='app_title']").textContent = translations[language].app_title;
   document.querySelector("h1[data-i18n='app_title']").textContent = translations[language].app_title;
 
-  // Cambia TUTTI i testi normali
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     const type = el.getAttribute("data-i18n-type");
-
     if (translations[language][key]) {
-      if (type === "html") {
-        el.innerHTML = translations[language][key];
-      } else {
-        el.textContent = translations[language][key];
-      }
+      if (type === "html") el.innerHTML = translations[language][key];
+      else el.textContent = translations[language][key];
     }
   });
 
-  // Cambia TUTTI gli attributi (es: alt, title...)
   document.querySelectorAll("[data-i18n-attr]").forEach(el => {
     const attr = el.getAttribute("data-i18n-attr");
     const key = el.getAttribute("data-i18n");
-    if (translations[language][key]) {
-      el.setAttribute(attr, translations[language][key]);
-    }
+    if (translations[language][key]) el.setAttribute(attr, translations[language][key]);
   });
 }
 
+/* === MODAL === */
 function openModal(src) {
   document.getElementById('modalImage').src = src;
   document.getElementById('imageModal').style.display = 'block';
 }
-
 function closeModal() {
   document.getElementById('imageModal').style.display = 'none';
 }
-
 </script>
 
 </body>
