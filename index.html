@@ -577,6 +577,42 @@ function getTextFromI18n(el, langCode) {
 
 /* === COPIA CRONOLOGIA === */
 function copyHistory() {
+  // Logica specifica per step8
+  if (currentStepId === 'step9') { // Risolto da step8
+    const itText = "Lo store ha segnalato problemi di stampa dal PC Windows.\n\nCi siamo collegati da remoto e abbiamo aggiornato il driver della stampante Brother sul PC Windows. Al termine, abbiamo eseguito una prova di stampa con esito positivo.";
+    const enText = "The store reported printing issues from a Windows PC.\n\nWe connected remotely and updated the Brother printer driver on the Windows PC. After the update, we performed a test print, which completed successfully.";
+    const finalOutput = `${itText}\n\n--------------------------------------\n\n${enText}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(finalOutput)
+        .then(() => alert(translations[language].copy_success))
+        .catch(() => fallbackCopy(finalOutput));
+    } else {
+      fallbackCopy(finalOutput);
+    }
+    return;
+  }
+
+  if (currentStepId === 'step10') { // Non risolto da step8
+    const itText = "Lo store ha segnalato problemi di stampa dal PC Windows. Ci siamo collegati da remoto e abbiamo aggiornato il driver della stampante Brother sul PC Windows seguendo tutti i passaggi previsti dalla documentazione. Nonostante l'aggiornamento, il problema di stampa persiste.";
+    const enText = "The store reported printing issues from a Windows PC. We connected remotely and updated the Brother printer driver on the Windows PC following all the steps outlined in the documentation. Despite the driver update, the printing issue persists.";
+    const finalOutput = `${itText}\n\n--------------------------------------\n\n${enText}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(finalOutput)
+        .then(() => alert(translations[language].copy_success))
+        .catch(() => fallbackCopy(finalOutput));
+    } else {
+      fallbackCopy(finalOutput);
+    }
+    return;
+  }
+  // Fine logica specifica
+
+
+
+
+
+
+
   const prefixIt = "Il negozio ha segnalato l'impossibilità di stampare da un PC Windows. Di seguito il troubleshooting effettuato:";
   const prefixEn = "The store reported an issue with printing from a Windows PC. Below is the troubleshooting performed:";
   const choiceByStep = {};
